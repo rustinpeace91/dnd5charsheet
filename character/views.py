@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . import models
+from .models import Character
 # Create your views here.
 
 def sheet(request, id):
@@ -7,4 +7,4 @@ def sheet(request, id):
     context = {
         'character': sheet
     }
-    return('charsheet.html', context)
+    return render(request, 'charsheet.html', context)
