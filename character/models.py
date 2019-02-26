@@ -7,6 +7,7 @@ class Character(models.Model):
     char_class = models.CharField(max_length=50)
     level = models.IntegerField()
     description = models.TextField()
+    image = models.ImageField(upload_to='media/images', default='media/images/knight.jpg')
 
 class Weapon(models.Model):
     name = models.CharField(max_length=100)
