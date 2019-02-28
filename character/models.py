@@ -9,6 +9,16 @@ class Character(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='media/images', default='media/images/knight.jpg')
 
+    strength = models.IntegerField()
+    dexterity = models.IntegerField()
+    constitution = models.IntegerField()
+    intelligence = models.IntegerField()
+    wisdom = models.IntegerField()
+    charisma = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
 class Weapon(models.Model):
     name = models.CharField(max_length=100)
     to_hit = models.IntegerField()
@@ -19,10 +29,16 @@ class Weapon(models.Model):
     effects = models.TextField()
     
 
+    def __str__(self):
+        return self.name
+
 class Spell(models.Model):
     name = models.CharField(max_length=100)
     level = models.IntegerField()
     description = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 
 class Inventory(models.Model):

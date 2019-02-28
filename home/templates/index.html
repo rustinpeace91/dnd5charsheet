@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
     <h2>This is where the characters are displayed</h2>
-<div class = "row">
-{% for character in characters %}
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{character.image.url}}" style="width:200px" alt="Card image cap">
-        <div class="card-body">
-        <h5 class="card-title"><a href = "character/{{character.id}}">{{ character.name }}</a></h5>
-        <p class="card-text">Level: {{ character.level }}</p>
-        <p class="card-text">Class: {{ character.char_class }}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
+<div class="container">
+    <div class = "row">
+    {% for character in characters %}
+        <div class="col-sm-5">
 
-{% endfor %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{character.image.url}}" style="max-width:200px; max-height:200px" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title"><a href = "character/{{character.id}}">{{ character.name }}</a></h5>
+                <p class="card-text">Level: {{ character.level }}</p>
+                <p class="card-text">Class: {{ character.char_class }}</p>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
 </div>
 {% endblock %}
