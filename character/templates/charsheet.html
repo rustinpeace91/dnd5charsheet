@@ -30,15 +30,25 @@
                         <a data-toggle="collapse" href="#statscollapse">Stats</a> 
                     </h4>
                 </div>
-                <div class="card-body collapse" id="statscollapse" >
+                <div class="card-body collapse" id="statscollapse">
                     {% for i, v in stats.items %}
-
                         <p>{{i}} :<span class="d-inline p-2 bg-dark text-white">{{ v }}</span></p>
                     {% endfor %}
-
                 </div>
             </div>
-
+            <!-- INVENTORY -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        <a data-toggle="collapse" href="#inventorycollapse">Inventory</a> 
+                    </h4>
+                </div>
+                <div class="card-body collapse" id="inventorycollapse">
+                    {% for weapon in inventory %}
+                        <p>{{weapon.name}}</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -47,4 +57,3 @@
     // submit button reads data from input 
     // makes ajax call without reloading page
     // runs function to recalculate all derived values
-    

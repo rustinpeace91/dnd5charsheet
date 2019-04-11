@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Character
+from .models import Character, Weapon, Spell, Inventory
 # Create your views here.
 
 def sheet(request, id):
@@ -13,8 +13,12 @@ def sheet(request, id):
         "charisma":character.charisma
     }
 
+    inventory = Inventory.objects.filter(character=id)
+    
+
     context = {
         'character': character,
-        'stats':stats
+        'stats':stats,
+        'inventory': inventory,
     }
     return render(request, 'charsheet.html', context)
