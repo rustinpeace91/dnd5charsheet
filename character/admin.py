@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Character, Weapon, Spell
+from .models import Character, Weapon, Spell, Inventory
 
 
 
@@ -35,3 +35,4 @@ class CharacterAdmin(admin.ModelAdmin):
 admin.site.register(Character, CharacterAdmin);
 admin.site.register(Weapon);
 admin.site.register(Spell);
+admin.site.register(Inventory);
