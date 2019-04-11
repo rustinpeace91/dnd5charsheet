@@ -12,6 +12,7 @@ def sheet(request, id):
         "wisdom":character.wisdom,
         "charisma":character.charisma
     }
+
     context = {
         'character': character,
         'stats':stats

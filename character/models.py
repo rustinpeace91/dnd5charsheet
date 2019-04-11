@@ -6,7 +6,7 @@ class Character(models.Model):
     name = models.CharField(max_length=100, unique=True)
     char_class = models.CharField(max_length=50)
     level = models.IntegerField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     image = models.ImageField(upload_to='media/images', default='media/images/knight.jpg')
 
     strength = models.IntegerField()
@@ -25,8 +25,8 @@ class Weapon(models.Model):
     damage = models.CharField(max_length=50)
     damage_type = models.CharField(max_length=50)
     weight = models.CharField(max_length=50)
-    description = models.TextField()
-    effects = models.TextField()
+    description = models.TextField(blank=True)
+    effects = models.TextField(blank=True)
     
 
     def __str__(self):
