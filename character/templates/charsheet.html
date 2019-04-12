@@ -44,9 +44,26 @@
                     </h4>
                 </div>
                 <div class="card-body collapse" id="inventorycollapse">
-                    {% for i in inventory %}
-                        <p>{{i.weapon.name}}</p>
-                    {% endfor %}
+                        <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Weapon:</th>
+                                    <th scope="col">To Hit</th>
+                                    <th scope="col">Damange</th>
+                                    <th scope="col">Weight</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in inventory %}
+                                  <tr>
+                                    <th scope="row">{{ i.weapon.name }}</th>
+                                    <td>{{ i.weapon.to_hit }}</td>
+                                    <td>{{ i.weapon.damage }}</td>
+                                    <td>{{ i.weapon.weight }}</td>
+                                  </tr>
+                                {% endfor %}
+                                </tbody>
+                        </table>
                 </div>
             </div>
         </div>
