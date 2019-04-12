@@ -44,8 +44,8 @@
                     </h4>
                 </div>
                 <div class="card-body collapse" id="inventorycollapse">
-                    {% for weapon in inventory %}
-                        <p>{{weapon.name}}</p>
+                    {% for i in inventory %}
+                        <p>{{i.weapon.name}}</p>
                     {% endfor %}
                 </div>
             </div>
