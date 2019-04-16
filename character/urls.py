@@ -1,7 +1,7 @@
 
-from django.urls import include,path
-from . import views
+from django.urls import include, path
+from .views import CharSheetView
 
 urlpatterns = [
-    path('<int:id>/', views.sheet, name='sheet' )
+    path('<int:id>/', CharSheetView.as_view(), name='sheet' )
 ]
