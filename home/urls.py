@@ -1,7 +1,7 @@
 from django.urls import path
 
-from . import views
+from .views import CharacterCollection
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', CharacterCollection.as_view(), name='home'),
 ]

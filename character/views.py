@@ -23,8 +23,11 @@ class CharSheetView(TemplateView):
 
         inventory = Inventory.objects.filter(character=char_id)
 
-        context['character'] = character
-        context['stats'] = stats
-        context['inventory'] = inventory
+        context_vars = {
+            'character': character,
+            'stats':stats,
+            'inventory': inventory,
+        }
+        context.update(context_vars)
         return context
     
