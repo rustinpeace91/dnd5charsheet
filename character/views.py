@@ -34,6 +34,7 @@ class CharSheetView(TemplateView):
         return context
     
 class CharacterCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'character_form.html'
     model = Character
     fields = [
         'name',
