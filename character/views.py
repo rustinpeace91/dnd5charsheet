@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Character, Weapon, Spell, Inventory
 from django.views.generic.base import TemplateView
 
+from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 class CharSheetView(TemplateView):
@@ -31,3 +33,21 @@ class CharSheetView(TemplateView):
         context.update(context_vars)
         return context
     
+class CharacterCreateView(LoginRequiredMixin, CreateView):
+    model = Character
+    fields = [
+        'name',
+        'char_class',
+        'level',
+        'description',
+        'image',
+        'strength',
+        'dexterity',
+        'constitution',
+        'intelligence',
+        'wisdom',
+        'charisma'
+    ]
+
+class CharacterUpdateView(LoginRequiredMixin, UpdateView):
+    model = Character

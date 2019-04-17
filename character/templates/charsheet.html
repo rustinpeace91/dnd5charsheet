@@ -17,8 +17,8 @@
                             <img class="card-img-top" src="{{character.image.url}}" style="max-width:200px; max-height:200px" alt="Card image cap">
                         </div>
                         <div class="column xl">
-                            <p>Character name: {{ character.name }}</p>
-                            <p>level: {{ character.level }}</p>
+                            <p contenteditable="true">Character name: {{ character.name }}</p>
+                            <p>Level:<input type = "number" step="1" value="{{ character.level }}"></p>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body collapse" id="statscollapse">
                     {% for i, v in stats.items %}
-                        <p>{{i}} :<span class="d-inline p-2 bg-dark text-white">{{ v }}</span></p>
+                        <p>{{i}} :<span class="d-inline p-2 bg-dark text-white"><input type = "number" step="1" value="{{ v }}" style="width:50px;"></span></p>
                     {% endfor %}
                 </div>
             </div>
