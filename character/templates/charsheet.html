@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
     <div class="container">
+
+            <nav class="navbar navbar-default fixed-top ml-auto">
+                    <button id="submit" type="button" class="btn btn-primary">update</button>
+            </nav>
+
         <div class="card">
             <!--INFO-->
             <div class="card">
@@ -17,8 +22,9 @@
                             <img class="card-img-top" src="{{character.image.url}}" style="max-width:200px; max-height:200px" alt="Card image cap">
                         </div>
                         <div class="column xl">
-                            <p contenteditable="true">Character name: {{ character.name }}</p>
-                            <p>Level:<input type = "number" step="1" value="{{ character.level }}"></p>
+                            <p>Character name: <span id="character-name" contenteditable="true">{{ character.name }}</span></p>
+                            <p>Character Class: <span id="character-class" contenteditable="true">{{ character.char_class }}</span></p>
+                            <p>Level:<input id="character-level" type = "number" step="1" value="{{ character.level }}"></p>
                         </div>
                     </div>
                 </div>
@@ -32,7 +38,8 @@
                 </div>
                 <div class="card-body collapse" id="statscollapse">
                     {% for i, v in stats.items %}
-                        <p>{{i}} :<span class="d-inline p-2 bg-dark text-white"><input type = "number" step="1" value="{{ v }}" style="width:50px;"></span></p>
+
+                        <p>{{i}} :<span class="d-inline p-2 bg-dark text-white"><input id="character-stat-{{i}}" class="character-stats" type="number" step="1" value="{{ v }}" style="width:50px;"></span></p>
                     {% endfor %}
                 </div>
             </div>
@@ -67,7 +74,33 @@
                 </div>
             </div>
         </div>
+
     </div>
+    <script>
+        $(document).ready(function() { 
+            $('#submit').click(function() {
+                var name = $("#character-name").text();
+                var level = $("#character-level").val();
+                var char_class = $("#character-class").text();
+                var stats = {
+                }
+                //NOTE: we want to do something to santize hmtl before making a post request
+                var data = {
+                    "name":name,
+                    "level": level,
+                    "class": char_class,
+                    "strength":$("#character-stat-strength").val(),
+                    "dexterity":$("#character-stat-dexterity").val(),
+                    "constitution":$("#character-stat-constitution").val(),
+                    "intelligence":$("#character-stat-intelligence").val(),
+                    "wisdom":$("#character-stat-wisdom").val(),
+                    "charisma":$("#character-stat-charisma").val()
+                }
+                console.log(data)
+            })
+        })
+
+    </script>
 {% endblock %}
 
 //handling character sheet changes:

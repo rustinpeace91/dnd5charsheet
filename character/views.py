@@ -52,3 +52,21 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 class CharacterUpdateView(LoginRequiredMixin, UpdateView):
     model = Character
+    fields = [
+        'name',
+        'char_class',
+        'level',
+        'description',
+        'image',
+        'strength',
+        'dexterity',
+        'constitution',
+        'intelligence',
+        'wisdom',
+        'charisma'
+    ]
+
+    # steps
+        #takes in data and model
+        # sends pk, data to update form
+        # returns response 
