@@ -5,7 +5,12 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
+from .forms import CharacterUpdateForm
 
+
+from django.http import JsonResponse 
+
+import json
 class CharSheetView(TemplateView):
     template_name = 'charsheet.html'
 
@@ -50,23 +55,30 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
         'charisma'
     ]
 
-class CharacterUpdateView(LoginRequiredMixin, UpdateView):
-    model = Character
-    fields = [
-        'name',
-        'char_class',
-        'level',
-        'description',
-        'image',
-        'strength',
-        'dexterity',
-        'constitution',
-        'intelligence',
-        'wisdom',
-        'charisma'
-    ]
+# class CharacterUpdateView(LoginRequiredMixin, UpdateView):
+#     model = Character
+#     fields = [
+#         'name',
+#         'char_class',
+#         'level',
+#         'description',
+#         'image',
+#         'strength',
+#         'dexterity',
+#         'constitution',
+#         'intelligence',
+#         'wisdom',
+#         'charisma'
+#     ]
 
-    # steps
-        #takes in data and model
-        # sends pk, data to update form
-        # returns response 
+def character_update(request, id):
+    if request.method == 'POST':
+        new_values = json.loads(request.POST['form'])
+        form = CharacterUpdateForm(new_values)
+        # import pdb; pdb.set_trace
+        if form.is_valid():
+            form.save()
+            return JsonResponse({
+                'success': "yeah"
+            })
+    return redirect('/')       

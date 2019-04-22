@@ -83,20 +83,30 @@
                 var level = $("#character-level").val();
                 var char_class = $("#character-class").text();
                 var stats = {
-                }
+                        "name":name,
+                        "level": level,
+                        "class": char_class,
+                        "strength":$("#character-stat-strength").val(),
+                        "dexterity":$("#character-stat-dexterity").val(),
+                        "constitution":$("#character-stat-constitution").val(),
+                        "intelligence":$("#character-stat-intelligence").val(),
+                        "wisdom":$("#character-stat-wisdom").val(),
+                        "charisma":$("#character-stat-charisma").val()
+                    }
                 //NOTE: we want to do something to santize hmtl before making a post request
                 var data = {
-                    "name":name,
-                    "level": level,
-                    "class": char_class,
-                    "strength":$("#character-stat-strength").val(),
-                    "dexterity":$("#character-stat-dexterity").val(),
-                    "constitution":$("#character-stat-constitution").val(),
-                    "intelligence":$("#character-stat-intelligence").val(),
-                    "wisdom":$("#character-stat-wisdom").val(),
-                    "charisma":$("#character-stat-charisma").val()
+                    form:JSON.stringify(stats),
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
                 }
-                console.log(data)
+                url = '/character/update/' + '{{character.id}}' + '/';
+                $.ajax({
+                    url:url,
+                    method:'POST',
+                    data: data,
+                    success: function(success){
+                        alert(success)
+                    }
+                })
             })
         })
 
