@@ -103,8 +103,10 @@
                     url:url,
                     method:'POST',
                     data: data,
-                    success: function(success){
-                        alert(success)
+                    success: function(data){
+                        if(data.success){
+                            alert("character updated!")
+                        }
                     }
                 })
             })

@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from .models import Character, Weapon, Spell, Inventory
 from django.views.generic.base import TemplateView
+from django.shortcuts import redirect
 
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 from .forms import CharacterUpdateForm
-
 
 from django.http import JsonResponse 
 
@@ -74,11 +74,12 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 def character_update(request, id):
     if request.method == 'POST':
         new_values = json.loads(request.POST['form'])
-        form = CharacterUpdateForm(new_values)
+        char = Character.objects.get(id=id)
+        form = CharacterUpdateForm(new_values, instance=char)
         # import pdb; pdb.set_trace
         if form.is_valid():
             form.save()
             return JsonResponse({
-                'success': "yeah"
+                'success': True
             })
     return redirect('/')       
