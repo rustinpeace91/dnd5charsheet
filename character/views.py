@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Character, Weapon, Spell, Inventory
+from django.views import View
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
 
@@ -71,15 +72,17 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 #         'charisma'
 #     ]
 
-def character_update(request, id):
-    if request.method == 'POST':
+
+
+class CharacterUpdateView(View):
+    def post(self, request, **args):
+        char_id = self.kwargs['id']
         new_values = json.loads(request.POST['form'])
-        char = Character.objects.get(id=id)
+        char = Character.objects.get(id=char_id)
         form = CharacterUpdateForm(new_values, instance=char)
-        # import pdb; pdb.set_trace
         if form.is_valid():
             form.save()
             return JsonResponse({
                 'success': True
             })
-    return redirect('/')       
+        return redirect('/')  
