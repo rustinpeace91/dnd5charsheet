@@ -56,22 +56,6 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
         'charisma'
     ]
 
-# class CharacterUpdateView(LoginRequiredMixin, UpdateView):
-#     model = Character
-#     fields = [
-#         'name',
-#         'char_class',
-#         'level',
-#         'description',
-#         'image',
-#         'strength',
-#         'dexterity',
-#         'constitution',
-#         'intelligence',
-#         'wisdom',
-#         'charisma'
-#     ]
-
 
 
 class CharacterUpdateView(View):
@@ -83,6 +67,10 @@ class CharacterUpdateView(View):
         if form.is_valid():
             form.save()
             return JsonResponse({
-                'success': True
+                'success': True,
+                'message': 'Character sheet updated!'
             })
-        return redirect('/')  
+        return JsonResponse({
+            'success': False,
+            'message': 'Error in Form!'
+        })

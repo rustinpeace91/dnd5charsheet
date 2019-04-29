@@ -106,6 +106,9 @@
                     success: function(data){
                         if(data.success){
                             alert("character updated!")
+                        } 
+                        if(data.success == false){
+                            alert("error in form!")
                         }
                     }
                 })
