@@ -36,6 +36,10 @@ class CharSheetView(TemplateView):
             'stats':stats,
             'inventory': inventory,
         }
+
+        json_char = json.dumps(context_vars)
+
+        context_vars["json_response"] = json_char
         context.update(context_vars)
         return context
     
