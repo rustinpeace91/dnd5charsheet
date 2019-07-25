@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from character.models import Character
 from django.views.generic.list import ListView
 from django.http import JsonResponse
+from django.forms.models import model_to_dict
 
+import json
 
 # def index(request):
 #     characters = Character.objects.all()
@@ -24,8 +26,11 @@ class CharacterCollection(ListView):
     
 
 def api_get_characters(request):
-    characters = Character.objects.all()
+    characters = [ model_to_dict(character) for character in  Character.objects.all() ]
+    for character in characters:
+        character["image"] = str(character["image"])
     context = {
-        'characters': list(characters.values_list())
+        'characters': characters
     }
-    return JsonResponse(context, safe=False)
+    return JsonResponse(characters, safe=False)
+    # return HttpResponse(context, content_type="application/json")
