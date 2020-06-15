@@ -33,50 +33,6 @@ var character = {{ json_response }}
                     </div>
                 </div>
             </div>
-            <!--STATS-->
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        <a data-toggle="collapse" href="#statscollapse">Stats</a> 
-                    </h4>
-                </div>
-                <div class="card-body collapse" id="statscollapse">
-                    {% for i, v in stats.items %}
-
-                        <p>{{i}} :<span class="d-inline p-2 bg-dark text-white"><input id="character-stat-{{i}}" class="character-stats" type="number" step="1" value="{{ v }}" style="width:50px;"></span></p>
-                    {% endfor %}
-                </div>
-            </div>
-            <!-- INVENTORY -->
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        <a data-toggle="collapse" href="#inventorycollapse">Inventory</a> 
-                    </h4>
-                </div>
-                <div class="card-body collapse" id="inventorycollapse">
-                        <table class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">Weapon:</th>
-                                    <th scope="col">To Hit</th>
-                                    <th scope="col">Damange</th>
-                                    <th scope="col">Weight</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                {% for i in inventory %}
-                                  <tr>
-                                    <th scope="row">{{ i.weapon.name }}</th>
-                                    <td>{{ i.weapon.to_hit }}</td>
-                                    <td>{{ i.weapon.damage }}</td>
-                                    <td>{{ i.weapon.weight }}</td>
-                                  </tr>
-                                {% endfor %}
-                                </tbody>
-                        </table>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -90,12 +46,6 @@ var character = {{ json_response }}
                         "name":name,
                         "level": level,
                         "class": char_class,
-                        "strength":$("#character-stat-strength").val(),
-                        "dexterity":$("#character-stat-dexterity").val(),
-                        "constitution":$("#character-stat-constitution").val(),
-                        "intelligence":$("#character-stat-intelligence").val(),
-                        "wisdom":$("#character-stat-wisdom").val(),
-                        "charisma":$("#character-stat-charisma").val()
                     }
                 //NOTE: we want to do something to santize hmtl before making a post request
                 var data = {

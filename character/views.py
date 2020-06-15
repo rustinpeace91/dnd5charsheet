@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Character, Weapon, Spell, Inventory
+from .models import Character
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
@@ -20,21 +20,8 @@ class CharSheetView(TemplateView):
         context = super().get_context_data(**kwargs)
         char_id = self.kwargs['id']
         character = Character.objects.get(id=char_id)
-        stats = {
-            "strength":character.strength,
-            "dexterity":character.dexterity,
-            "constitution":character.constitution,
-            "intelligence":character.intelligence,
-            "wisdom":character.wisdom,
-            "charisma":character.charisma
-        }
-
-        inventory = Inventory.objects.filter(character=char_id)
-
         context_vars = {
-            'character': character,
-            'stats':stats,
-            'inventory': inventory,
+            'character': character
         }
         context.update(context_vars)
         return context
@@ -48,12 +35,6 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
         'level',
         'description',
         'image',
-        'strength',
-        'dexterity',
-        'constitution',
-        'intelligence',
-        'wisdom',
-        'charisma'
     ]
 
 

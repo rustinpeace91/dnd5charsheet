@@ -23,14 +23,3 @@ class CharacterCollection(ListView):
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         return context
-    
-
-def api_get_characters(request):
-    characters = [ model_to_dict(character) for character in  Character.objects.all() ]
-    for character in characters:
-        character["image"] = str(character["image"])
-    context = {
-        'characters': characters
-    }
-    return JsonResponse(characters, safe=False)
-    # return HttpResponse(context, content_type="application/json")
