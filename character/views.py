@@ -39,19 +39,28 @@ class CharacterCreateView(LoginRequiredMixin, CreateView):
 
 
 
-class CharacterUpdateView(View):
-    def post(self, request, **args):
-        char_id = self.kwargs['id']
-        new_values = json.loads(request.POST['form'])
-        char = Character.objects.get(id=char_id)
-        form = CharacterUpdateForm(new_values, instance=char)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({
-                'success': True,
-                'message': 'Character sheet updated!'
-            })
-        return JsonResponse({
-            'success': False,
-            'message': 'Error in Form!'
-        })
+class CharacterUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'character_update_form.html'
+    model = Character
+    fields = [
+        'name',
+        'char_class',
+        'level',
+        'description',
+        'image',
+    ]
+    # def post(self, request, **args):
+    #     char_id = self.kwargs['id']
+    #     new_values = json.loads(request.POST['form'])
+    #     char = Character.objects.get(id=char_id)
+    #     form = CharacterUpdateForm(new_values, instance=char)
+    #     if form.is_valid():
+    #         form.save()
+    #         return JsonResponse({
+    #             'success': True,
+    #             'message': 'Character sheet updated!'
+    #         })
+    #     return JsonResponse({
+    #         'success': False,
+    #         'message': 'Error in Form!'
+    #     })

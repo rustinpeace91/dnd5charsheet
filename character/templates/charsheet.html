@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
-<script>
-var character = {{ json_response }}
 
-</script>
     <div class="container">
 
             <nav class="navbar navbar-default fixed-top ml-auto">
-                    <button id="submit" type="button" class="btn btn-primary">update</button>
+                <a href="{% url 'character_update' character.id  %}">
+                    <button type="button" class="btn btn-primary">Update</button>
+                </a>
             </nav>
 
         <div class="card">
@@ -36,40 +35,6 @@ var character = {{ json_response }}
         </div>
 
     </div>
-    <script>
-        $(document).ready(function() { 
-            $('#submit').click(function() {
-                var name = $("#character-name").text();
-                var level = $("#character-level").val();
-                var char_class = $("#character-class").text();
-                var stats = {
-                        "name":name,
-                        "level": level,
-                        "class": char_class,
-                    }
-                //NOTE: we want to do something to santize hmtl before making a post request
-                var data = {
-                    form:JSON.stringify(stats),
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                }
-                url = '/character/update/' + '{{character.id}}' + '/';
-                $.ajax({
-                    url:url,
-                    method:'POST',
-                    data: data,
-                    success: function(data){
-                        if(data.success){
-                            alert("character updated!")
-                        } 
-                        if(data.success == false){
-                            alert("error in form!")
-                        }
-                    }
-                })
-            })
-        })
-
-    </script>
 {% endblock %}
 
 //handling character sheet changes:
