@@ -12,9 +12,8 @@
     <div class = "row">
     {% for character in object_list %}
         <div class="col-sm-5">
-
+            
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{character.image.url}}" style="max-width:200px; max-height:200px" alt="Card image cap">
                 <div class="card-body">
                 <h5 class="card-title"><a href = "character/{{character.id}}">{{ character.name }}</a></h5>
                 <p class="card-text">Level: {{ character.level }}</p>
