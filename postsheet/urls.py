@@ -1,4 +1,4 @@
-"""charsheet URL Configuration
+"""postsheet URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from character.views import CharacterCreateView
+from post.views import PostCreateView
 
 urlpatterns = [
     path('', include('home.urls')),
-    path('character/', include('character.urls')),
+    path('post/', include('post.urls')),
     path('admin/', admin.site.urls)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

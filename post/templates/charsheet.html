@@ -4,7 +4,7 @@
     <div class="container">
 
             <nav class="navbar navbar-default fixed-top ml-auto">
-                <a href="{% url 'character_update' character.id  %}">
+                <a href="{% url 'post_update' post.id  %}">
                     <button type="button" class="btn btn-primary">Update</button>
                 </a>
             </nav>
@@ -22,12 +22,11 @@
                 <div class="card-body collapse show" id="infocollapse" >
                     <div class="row">
                         <div class="column xl">
-                            <img class="card-img-top" src="{{character.image.url}}" style="max-width:200px; max-height:200px" alt="Card image cap">
+                            <img class="card-img-top" src="{{post.image.url}}" style="max-width:200px; max-height:200px" alt="Card image cap">
                         </div>
                         <div class="column xl">
-                            <p>Character name: <span id="character-name" contenteditable="true">{{ character.name }}</span></p>
-                            <p>Character Class: <span id="character-class" contenteditable="true">{{ character.char_class }}</span></p>
-                            <p>Level:<input id="character-level" type = "number" step="1" value="{{ character.level }}"></p>
+                            <p>post name: <span id="post-title" contenteditable="true">{{ post.name }}</span></p>
+                            <p>post Class: <span id="post-body" contenteditable="true">{{ post.body }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -37,7 +36,7 @@
     </div>
 {% endblock %}
 
-//handling character sheet changes:
+//handling post sheet changes:
     // submit button reads data from input 
     // makes ajax call without reloading page
     // runs function to recalculate all derived values

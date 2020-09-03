@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import CharacterCollection
+from .views import PostCollection
 
 urlpatterns = [
-    path('', CharacterCollection.as_view(), name='home')
+    path('', PostCollection.as_view(), name='home')
 ]
