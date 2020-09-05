@@ -18,8 +18,8 @@ class PostsheetView(TemplateView):
     def get_context_data(self, **kwargs):
         
         context = super().get_context_data(**kwargs)
-        char_id = self.kwargs['id']
-        post = Post.objects.get(id=char_id)
+        post_id = self.kwargs['id']
+        post = Post.objects.get(id=post_id)
         context_vars = {
             'post': post
         }
@@ -30,11 +30,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'post_form.html'
     model = Post
     fields = [
-        'name',
-        'char_class',
-        'level',
-        'description',
-        'image',
+        'title',
+        'body',
+        'image'
     ]
 
 
@@ -43,11 +41,9 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'post_update_form.html'
     model = Post
     fields = [
-        'name',
-        'char_class',
-        'level',
-        'description',
-        'image',
+        'title',
+        'body',
+        'image'
     ]
     # def post(self, request, **args):
     #     char_id = self.kwargs['id']
