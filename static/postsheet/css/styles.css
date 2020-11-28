@@ -9,3 +9,8 @@
 #masthead{
     background-image: url('../img/home-bg.jpg');
 }
+
+.btn-icon {
+    font-size: 25px;
+    padding: .375rem .75rem;
+}
